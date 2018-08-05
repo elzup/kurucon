@@ -1,21 +1,15 @@
 // @flow
 import type { Action, Board } from '../../types'
 import { Actions } from './actionTypes'
+import { makeId } from '../../utils'
 
 export type State = Board
 
-const initialCells = [...Array(5)].map(() =>
-	[...Array(5)].map(() => ({
-		on: false,
-	})),
-)
-const px = 0
-const py = 0
-initialCells[py][px].on = true
-
 export const initialState: State = {
-	player: { x: px, y: py },
-	cells: initialCells,
+	player: { x: 0, y: 0 },
+	cells: [...Array(5).keys()].map(y =>
+		[...Array(5).keys()].map(x => makeId(x, y)),
+	),
 }
 
 export default function(state: State = initialState, action: Action): State {

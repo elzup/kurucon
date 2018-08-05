@@ -48,5 +48,5 @@ export type Cell = {
 
 export type Board = {
 	player: { x: number, y: number },
-	cells: Cell[][],
+	cells: string[][],
 }
