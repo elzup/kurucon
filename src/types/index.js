@@ -42,10 +42,11 @@ export type Box = {
 	yaw: Axis,
 }
 
-export type Potato = {
-	+id: ID,
-	+publish: boolean,
-	+owner?: number,
-	+createdAt: number,
-	+text: string,
+export type Cell = {
+	on: boolean,
+}
+
+export type Board = {
+	player: { x: number, y: number },
+	cells: Cell[][],
 }

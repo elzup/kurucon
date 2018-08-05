@@ -3,6 +3,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import type { State } from '../../types'
 import InfoCard from './InfoCard'
+import BoardContainer from '../BoardContainer'
 // import * as selectors from './selectors'
 import * as actions from './logic'
 import Button from '@material-ui/core/Button'
@@ -20,6 +21,7 @@ const C = (props: Props) => (
 				<Paper>
 					<Button onClick={props.load}>BLE on</Button>
 					<InfoCard />
+					<BoardContainer />
 				</Paper>
 			</Grid>
 		</Grid>
