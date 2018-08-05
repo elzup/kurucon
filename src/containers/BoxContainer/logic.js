@@ -3,7 +3,6 @@
 import BlueJelly from '../../api/ble'
 import type { ThunkAction } from '../../types'
 import * as actions from './actions'
-import * as selectors from './selectors'
 
 let ble = null
 
@@ -25,7 +24,6 @@ export function load(): ThunkAction {
 	}
 }
 
-
 const base = {
 	pit: {
 		max: 32400,
@@ -40,33 +38,29 @@ const base = {
 		min: -17987,
 	},
 }
-const calc(v: number, ax: string) {
 
+const calc = (v: number, ax: string) => {
+	const total = base[ax].max - base[ax].min
+	const n = v + base[ax].max
+	return (n / total) * 100
 }
-
 
 export function save(pit: number, rol: number, yaw: number): ThunkAction {
 	return async (dispatch, getState) => {
-		const box = selectors.getBox(getState())
+		// const box = selectors.getBox(getState())
 		const newBox = {
 			pit: {
 				v: pit,
-				rate: calc(pit, 'pit')
+				rate: calc(pit, 'pit'),
 			},
 			rol: {
 				v: rol,
-				rate: calc(rol, 'rol')
+				rate: calc(rol, 'rol'),
 			},
 			yaw: {
 				v: yaw,
-				rate: calc(yaw, 'yaw')
+				rate: calc(yaw, 'yaw'),
 			},
-			// maxPit: Math.max(pit, box.maxPit),
-			// maxRol: Math.max(rol, box.maxRol),
-			// maxYaw: Math.max(yaw, box.maxYaw),
-			// minPit: Math.min(pit, box.minPit),
-			// minRol: Math.min(rol, box.minRol),
-			// minYaw: Math.min(yaw, box.minYaw),
 		}
 		console.log(newBox)
 		dispatch(actions.updateBox(newBox))
