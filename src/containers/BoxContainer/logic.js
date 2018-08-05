@@ -6,28 +6,10 @@ import * as actions from './actions'
 
 let ble = null
 
-export function load(): ThunkAction {
-	return async (dispatch, getState) => {
-		ble = new BlueJelly({
-			onRead: (data, uuid) => {
-				const pit = data.getInt16(0)
-				const rol = data.getInt16(2)
-				const yaw = data.getInt16(4)
-				dispatch(save(pit, rol, yaw))
-			},
-		})
-		const sUUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b'
-		const cUUID = 'beb5483e-36e1-4688-b7f5-ea07361b26a8'
-		ble.setUUID('UUID1', sUUID, cUUID)
-
-		ble.startNotify('UUID1')
-	}
-}
-
 const base = {
 	pit: {
-		max: 32400,
-		min: -32524,
+		max: 35230,
+		min: 0,
 	},
 	rol: {
 		max: 8612,
@@ -39,10 +21,35 @@ const base = {
 	},
 }
 
+const batchPit = (v: number) => {
+	if (v < 0) {
+		return v + 64924
+	}
+	return v
+}
+
 const calc = (v: number, ax: string) => {
 	const total = base[ax].max - base[ax].min
-	const n = v + base[ax].max
+	const n = v - base[ax].min
 	return (n / total) * 100
+}
+
+export function load(): ThunkAction {
+	return async (dispatch, getState) => {
+		ble = new BlueJelly({
+			onRead: (data, uuid) => {
+				const pit = batchPit(data.getInt16(0))
+				const rol = data.getInt16(2)
+				const yaw = data.getInt16(4)
+				dispatch(save(pit, rol, yaw))
+			},
+		})
+		const sUUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b'
+		const cUUID = 'beb5483e-36e1-4688-b7f5-ea07361b26a8'
+		ble.setUUID('UUID1', sUUID, cUUID)
+
+		ble.startNotify('UUID1')
+	}
 }
 
 export function save(pit: number, rol: number, yaw: number): ThunkAction {
