@@ -31,10 +31,15 @@ export type Store = ReduxStore<State, Action, Dispatch>
 
 export type ID = number | string
 
+export type Axis = {
+	v: number,
+	rate: number, // 0~100
+}
+
 export type Box = {
-	pit: number,
-	rol: number,
-	yaw: number,
+	pit: Axis,
+	rol: Axis,
+	yaw: Axis,
 }
 
 export type Potato = {

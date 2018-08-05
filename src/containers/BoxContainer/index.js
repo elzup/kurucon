@@ -1,14 +1,14 @@
 // @flow
 import * as React from 'react'
-import { connect, type Connector } from 'react-redux'
+import { connect } from 'react-redux'
 import type { State } from '../../types'
+import InfoCard from './InfoCard'
 // import * as selectors from './selectors'
 import * as actions from './logic'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
-type OProps = {}
 type Props = {
 	load: typeof actions.load,
 }
@@ -19,6 +19,7 @@ const C = (props: Props) => (
 			<Grid item xs={12} md={10}>
 				<Paper>
 					<Button onClick={props.load}>BLE on</Button>
+					<InfoCard />
 				</Paper>
 			</Grid>
 		</Grid>
@@ -37,7 +38,7 @@ class Container extends React.Component<Props> {
 
 const ms = (state: State) => ({})
 
-const conn: Connector<OProps, Props> = connect(
+const conn = connect(
 	ms,
 	{
 		load: actions.load,
