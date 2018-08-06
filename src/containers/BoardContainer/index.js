@@ -13,12 +13,14 @@ type Props = {
 
 const Wrap = styled.div`
 	margin-top: 10px;
+	border: solid black;
+	width: 500px;
+	border-radius: 20px;
+	overflow: hidden;
 `
 const Line = styled.div`
 	display: flex;
-	width: 500px;
-	border-top: solid black;
-	:last-child {
+	:not(:last-child) {
 		border-bottom: solid black;
 	}
 `

@@ -10,8 +10,7 @@ type Props = {
 const Wrap = styled.div`
 	width: 100px;
 	height: 100px;
-	border-left: solid black;
-	:last-child {
+	:not(:last-child) {
 		border-right: solid black;
 	}
 	&[data-on='true'] {
