@@ -6,7 +6,7 @@ import { makeId } from '../../utils'
 export type State = Board
 
 export const initialState: State = {
-	player: { x: 0, y: 0 },
+	player: { x: 2, y: 2 },
 	cells: [...Array(5).keys()].map(y =>
 		[...Array(5).keys()].map(x => makeId(x, y)),
 	),

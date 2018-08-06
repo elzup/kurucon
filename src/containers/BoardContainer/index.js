@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import styled from 'styled-components'
 
 import { connect } from 'react-redux'
 import type { State as RootState, Board } from '../../types'
@@ -10,14 +11,24 @@ type Props = {
 	board: Board,
 }
 
+const Wrap = styled.div`
+	margin-top: 10px;
+`
+const Line = styled.div`
+	display: flex;
+	width: 500px;
+	border-top: solid black;
+	:last-child {
+		border-bottom: solid black;
+	}
+`
+
 const C = (props: Props) => (
-	<div>
+	<Wrap>
 		{props.board.cells.map(line => (
-			<div style={{ display: 'flex' }}>
-				{line.map(ck => <Cell key={ck} cellKey={ck} />)}
-			</div>
+			<Line>{line.map(ck => <Cell key={ck} cellKey={ck} />)}</Line>
 		))}
-	</div>
+	</Wrap>
 )
 
 const ms = (state: RootState) => ({

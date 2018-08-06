@@ -44,6 +44,7 @@ export type Box = {
 
 export type Cell = {
 	on: boolean,
+	direction: 'r' | 'l' | 'u' | 'd',
 }
 
 export type Board = {

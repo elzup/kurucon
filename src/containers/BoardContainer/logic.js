@@ -15,10 +15,28 @@ export function movePlayer(pit: number, yaw: number): ThunkAction {
 		const x = (board.player.x + pit + 5) % 5
 		const y = (board.player.y + yaw + 5) % 5
 
+		const angle = (pit: number, yaw: number): 'r' | 'l' | 'u' | 'd' => {
+			if (pit === 1) {
+				return 'r'
+			}
+			if (pit === -1) {
+				return 'l'
+			}
+			if (yaw === 1) {
+				return 'd'
+			}
+			return 'u'
+		}
+
 		await dispatch(
-			updateCell(makeId(board.player.x, board.player.y), { on: false }),
+			updateCell(makeId(board.player.x, board.player.y), {
+				on: false,
+				direction: 'u',
+			}),
 		)
-		await dispatch(updateCell(makeId(x, y), { on: true }))
+		await dispatch(
+			updateCell(makeId(x, y), { on: true, direction: angle(pit, yaw) }),
+		)
 		dispatch(
 			actions.updateBoard({
 				...board,
