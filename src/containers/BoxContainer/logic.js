@@ -72,17 +72,30 @@ export function load(): ThunkAction {
 const between = (low: number, middle: number, high: number) =>
 	low <= middle && middle <= high
 
+const pos = (a: number): 0 | 1 | 2 | 3 => {
+	const p = 12.5
+	if (a < p) {
+		return 0
+	}
+	if (a < p + 25) {
+		return 1
+	}
+	if (a < p + 50) {
+		return 2
+	}
+	if (a < p + 75) {
+		return 3
+	}
+	return 0
+}
+
 const move = (a: number, b: number): number => {
-	if (75 < a && b < 25) {
+	const d = pos(a) - pos(b)
+	console.log(d)
+	if (d === 1 || d === -3) {
 		return 1
 	}
-	if (75 < b && a < 25) {
-		return -1
-	}
-	if (between(a, 25, b) || between(a, 50, b) || between(a, 75, b)) {
-		return 1
-	}
-	if (between(b, 25, a) || between(b, 50, a) || between(b, 75, a)) {
+	if (d === -1 || d === 3) {
 		return -1
 	}
 	return 0
@@ -92,11 +105,8 @@ export function save(box: Box): ThunkAction {
 	return async (dispatch, getState) => {
 		const oldBox = selectors.getBox(getState())
 		dispatch(actions.updateBox(box))
-		dispatch(
-			movePlayer(
-				move(oldBox.pit.rate, box.pit.rate),
-				move(oldBox.yaw.rate, box.yaw.rate),
-			),
-		)
+		const movePit = move(oldBox.pit.rate, box.pit.rate)
+		const moveYaw = move(oldBox.yaw.rate, box.yaw.rate)
+		dispatch(movePlayer(movePit, moveYaw))
 	}
 }
