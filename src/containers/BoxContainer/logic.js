@@ -73,20 +73,16 @@ const between = (low: number, middle: number, high: number) =>
 	low <= middle && middle <= high
 
 const move = (a: number, b: number): number => {
-	if (
-		between(a, 25, b) ||
-		between(a, 50, b) ||
-		between(a, 75, b) ||
-		(75 < a && b < 25)
-	) {
+	if (75 < a && b < 25) {
 		return 1
 	}
-	if (
-		between(b, 25, a) ||
-		between(b, 50, a) ||
-		between(b, 75, a) ||
-		(75 < b && a < 25)
-	) {
+	if (75 < b && a < 25) {
+		return -1
+	}
+	if (between(a, 25, b) || between(a, 50, b) || between(a, 75, b)) {
+		return 1
+	}
+	if (between(b, 25, a) || between(b, 50, a) || between(b, 75, a)) {
 		return -1
 	}
 	return 0
