@@ -1,3 +1,3 @@
-# TODO: My App [![Build Status](https://travis-ci.org/elzup/react-app-boilerplate.svg?branch=master)](https://travis-ci.org/elzup/react-app-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/elzup/react-app-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/elzup/react-app-boilerplate?branch=master)
+# Kurucon [![Build Status](https://travis-ci.org/elzup/kurucon.svg?branch=master)](https://travis-ci.org/elzup/kurucon) [![Coverage Status](https://coveralls.io/repos/github/elzup/kurucon/badge.svg?branch=master)](https://coveralls.io/github/elzup/kurucon?branch=master)
 
 > TODO: My Web app Boilerplate
