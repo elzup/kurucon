@@ -15,10 +15,7 @@ export const initialState: State = {
 export default function(state: State = initialState, action: Action): State {
 	switch (action.type) {
 		case Actions.UPDATE_BOARD:
-			return {
-				...state,
-				board: action.board,
-			}
+			return action.board
 
 		default:
 			return state
