@@ -44,6 +44,7 @@ export type Box = {
 
 export type Cell = {
 	on: boolean,
+	ok: boolean,
 	direction: 'r' | 'l' | 'u' | 'd',
 }
 

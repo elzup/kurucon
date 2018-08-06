@@ -12,11 +12,12 @@ c5.forEach(y => {
 	c5.forEach(x => {
 		initialState[makeId(x, y)] = {
 			on: false,
+			ok: false,
 			direction: 'u',
 		}
 	})
 })
-initialState['2-2'] = { on: true, direction: 'u' }
+initialState['2-2'] = { on: true, direction: 'u', ok: true }
 
 export default function(state: State = initialState, action: Action): State {
 	switch (action.type) {

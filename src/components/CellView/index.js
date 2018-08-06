@@ -19,10 +19,20 @@ const Wrap = styled.div`
 		background-size: 100% auto;
 		background-repeat: no-repeat;
 	}
+	&[data-ok='false'] {
+		background-color: #888;
+	}
+	&[data-ok='true'] {
+		background-color: #fff;
+	}
 `
 
 const CellView = (props: Props) => (
-	<Wrap data-on={props.cell.on} dir={props.cell.direction}>
+	<Wrap
+		data-on={props.cell.on}
+		data-ok={props.cell.ok}
+		dir={props.cell.direction}
+	>
 		{'　'}
 	</Wrap>
 )

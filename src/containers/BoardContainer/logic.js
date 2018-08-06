@@ -35,11 +35,16 @@ export function movePlayer(pit: number, yaw: number): ThunkAction {
 		await dispatch(
 			updateCell(makeId(board.player.x, board.player.y), {
 				on: false,
+				ok: true,
 				direction: 'u',
 			}),
 		)
 		await dispatch(
-			updateCell(makeId(x, y), { on: true, direction: angle(pit, yaw) }),
+			updateCell(makeId(x, y), {
+				ok: true,
+				on: true,
+				direction: angle(pit, yaw),
+			}),
 		)
 		dispatch(
 			actions.updateBoard({
