@@ -19,7 +19,7 @@ const C = (props: Props) => (
 		<Grid container justify="center" style={{ marginBottom: '100px' }}>
 			<Grid item xs={12} md={10}>
 				<Paper>
-					<Button onClick={props.load}>BLE on</Button>
+					<Button onClick={props.load}>Connect BLE</Button>
 					<InfoCard />
 					<BoardContainer />
 				</Paper>
