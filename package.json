@@ -1,5 +1,5 @@
 {
-	"name": "create-react-app",
+	"name": "kurucon",
 	"version": "0.1.0",
 	"dependencies": {
 		"@babel/cli": "^7.0.0-beta.39",
@@ -80,7 +80,7 @@
 	"devDependencies": {
 		"babel-engine-plugin": "^0.2.1"
 	},
-	"homepage": "https://elzup.github.io/react-app-boilerplate",
+	"homepage": "https://elzup.github.io/kurucon/",
 	"jest": {
 		"collectCoverageFrom": [
 			"src/**/*.{js,jsx,mjs}"
@@ -126,7 +126,7 @@
 		"dev": "node scripts/start.js",
 		"build": "node scripts/build.js",
 		"coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-		"deploy": "npm run build && up production",
+		"deploy": "npm run build && gh-pages -d build",
 		"flow": "flow",
 		"gen:env": "cp templates/temp.env .env.development.local && cp templates/temp.env .env.production.local",
 		"precommit": "lint-staged",
