@@ -5,28 +5,27 @@ import React3 from 'react-three-renderer'
 import * as THREE from 'three'
 import type { Box } from '../../types'
 
-type Prop = {
+type Props = {
 	box: Box,
 }
 
-class Box3d extends React.Component<Prop> {
-	constructor(props, context) {
-		super(props, context)
+type State = {
+	cubeRotation: any,
+}
 
-		// construct the position vector here, because if we use 'new' within render,
-		// React will think that things have changed when they have not.
-		this.cameraPosition = new THREE.Vector3(0, 0, 5)
+const cameraPosition = new THREE.Vector3(0, 0, 5)
 
-		this.state = {
-			cubeRotation: new THREE.Euler(),
-		}
+class Box3d extends React.Component<Props, State> {
+	state = {
+		cubeRotation: new THREE.Euler(0.2, 0.1, 1),
 	}
+
 	_onAnimate = () => {
 		this.setState({
 			cubeRotation: new THREE.Euler(
-				this.props.box.pit.rate,
-				this.props.box.rol.rate,
-				this.props.box.yaw.rate,
+				(this.props.box.pit.rate * Math.PI * 2) / 100,
+				(this.props.box.rol.rate * Math.PI * 2) / 100,
+				(this.props.box.yaw.rate * Math.PI * 2) / 100,
 			),
 		})
 	}
@@ -49,7 +48,7 @@ class Box3d extends React.Component<Prop> {
 						aspect={width / height}
 						near={0.1}
 						far={1000}
-						position={this.cameraPosition}
+						position={cameraPosition}
 					/>
 					<mesh rotation={this.state.cubeRotation}>
 						<boxGeometry width={1} height={4} depth={1} />
