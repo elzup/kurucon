@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import Typography from '@material-ui/core/Typography'
 import type { Box } from '../../types'
 
 type Props = {
@@ -16,7 +15,7 @@ const Line = styled.div`
 
 const InfoCard = (props: Props) => (
 	<div style={{ width: '400px' }}>
-		<Typography varian="body1">Pitch: {props.box.pit.v}</Typography>
+		Pitch
 		<Line>
 			<div
 				style={{
@@ -26,8 +25,7 @@ const InfoCard = (props: Props) => (
 				}}
 			/>
 		</Line>
-
-		<Typography varian="body1">Roll: {props.box.rol.v}</Typography>
+		Roll:
 		<Line>
 			<div
 				style={{
@@ -37,8 +35,7 @@ const InfoCard = (props: Props) => (
 				}}
 			/>
 		</Line>
-
-		<Typography varian="body1">Yaw: {props.box.yaw.v}</Typography>
+		Yaw:
 		<Line>
 			<div
 				style={{

@@ -2,13 +2,10 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import type { State } from '../../types'
+import Box3d from './Box3d'
 import InfoCard from './InfoCard'
-import BoardContainer from '../BoardContainer'
 // import * as selectors from './selectors'
 import * as actions from './logic'
-import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 
 type Props = {
 	load: typeof actions.load,
@@ -16,15 +13,9 @@ type Props = {
 
 const C = (props: Props) => (
 	<div>
-		<Grid container justify="center" style={{ marginBottom: '100px' }}>
-			<Grid item xs={12} md={10}>
-				<Paper>
-					<Button onClick={props.load}>Connect BLE</Button>
-					<InfoCard />
-					<BoardContainer />
-				</Paper>
-			</Grid>
-		</Grid>
+		<button onClick={props.load}>Connect BLE</button>
+		<InfoCard />
+		<Box3d />
 	</div>
 )
 
